@@ -1,0 +1,43 @@
+<apex:page standardController="Class__c" recordSetVar="class" extensions="ClassExtController"  >
+    <apex:messages id="msg" />
+    <apex:form >
+        <apex:pageBlock title="Class detail list" id="detail">
+            <apex:pageBlockTable value="{!class}" var="cls">
+                <apex:column headerValue="Action">
+                    <apex:commandLink action="{!editClass}" reRender="edit" value="Edit">
+                        <apex:param name="classId" value="{!cls.Id}" assignTo="{!classId}" />
+                    </apex:commandLink>
+                    &nbsp;|&nbsp;
+                    <apex:commandLink action="{!deleteClass}" value="Delete">
+                        <apex:param name="classId" value="{!cls.Id}" assignTo="{!classId}" />
+                    </apex:commandLink>                                              
+                </apex:column>
+                <apex:column value="{!cls.Id}" />
+                <apex:column value="{!cls.Name__c}" />
+                <apex:column value="{!cls.ClassTeacher__c}" />
+                <apex:column value="{!cls.DetailedDescription__c}"/>
+                <apex:column value="{!cls.Board__c}"/>
+                <apex:column value="{!cls.Fee__c}"/>
+                <apex:column value="{!cls.MaxSize__c}"/>                
+            </apex:pageBlockTable>           
+        </apex:pageBlock>
+        
+        <apex:outputPanel id="edit">
+            <apex:outputPanel rendered="{!showGrid}">
+                <apex:pageBlock title="Class Detail">
+                    <apex:pageBlockButtons >
+                        <apex:commandButton action="{!saveData}" value="Save" />
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection >
+                        <apex:inputField label="Name" value="{!classRecord.Name__c}" />
+                        <apex:inputField label="ClassTeacher" value="{!classRecord.ClassTeacher__c}" />
+                        <apex:inputField label="DetailedDescription" value="{!classRecord.DetailedDescription__c}" />
+                        <apex:inputField label="Board" value="{!classRecord.Board__c}" />
+                        <apex:inputField label="Fee" value="{!classRecord.Fee__c}" />
+                        <apex:inputField label="MaxSize" value="{!classRecord.MaxSize__c}" />
+                    </apex:pageBlockSection>
+                </apex:pageBlock>            
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

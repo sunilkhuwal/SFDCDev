@@ -1,0 +1,5 @@
+<apex:page standardController="Contact" standardStylesheets="false" sidebar="false">
+    <apex:panelBar style="background-color:black;" headerStyle="background-color:black;background-image:none; text-align:center;">
+        <apex:panelBarItem label="{!Contact.RecordType.Name}"  ></apex:panelBarItem>
+    </apex:panelBar>
+</apex:page>

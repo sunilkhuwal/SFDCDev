@@ -1,0 +1,23 @@
+<apex:page standardController="Account" extensions="AccountExtController">
+    <apex:form >
+        <apex:pageBlock title="Filters Criteria">
+            Billing City &nbsp; <apex:inputText id="billCity" value="{!billCity}"/> &nbsp;&nbsp;&nbsp;
+            Billing State &nbsp; <apex:inputText value="{!billState}"/> &nbsp;&nbsp;&nbsp;
+            Billing Country &nbsp; <apex:inputText value="{!billCountry}"/> &nbsp;&nbsp;&nbsp;
+            <apex:commandButton value="Filter" action="{!filter}"/>
+        </apex:pageBlock>
+        <apex:pageblock title="Filter Results" id="filter">
+            <apex:pageblocktable value="{!allAccountRecords}" var="ac">
+                <apex:column value="{!ac.Name}" />
+                <apex:column value="{!ac.BillingCity}"/>
+                <apex:column value="{!ac.BillingState}" />
+                <apex:column value="{!ac.BillingCountry}" />
+            </apex:pageblocktable>
+            <apex:commandButton reRender="filter" value="Previous" disabled="{!!setCon.hasPrevious}" action="{!previous}" />
+            <apex:commandButton rerender="filter" value="Next" disabled="{!!setCon.hasNext}" action="{!next}" />            
+            <apex:commandButton reRender="filter" value="First" disabled="{!!setCon.hasPrevious}" action="{!first}" />
+            <apex:commandButton reRender="filter" value="Last" disabled="{!!setCon.hasNext}" action="{!last}" />
+            &nbsp;<apex:outputText >Page: {!setCon.pageNumber}</apex:outputText>
+        </apex:pageBlock>    
+    </apex:form>
+</apex:page>

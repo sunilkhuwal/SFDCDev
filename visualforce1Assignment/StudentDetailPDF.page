@@ -1,0 +1,12 @@
+<apex:page standardController="Student__c" renderAs="pdf">
+        <apex:pageBlock title="Student Details" >
+                <table border="1">
+                    <tbody>
+                        <tr><td>Student Name</td><td><apex:outputText value="{!Student__c.Name}"/></td></tr>
+                        <tr><td>First Name</td><td><apex:outputText value="{!Student__c.First_Name__c}" /></td></tr>
+                        <tr><td>Last Name</td><td><apex:outputText value="{!Student__c.LastName__c}" /></td></tr>
+                        <tr><td>DOB</td><td><apex:outputText value="{!Student__c.Age__c}" /></td></tr>
+                    </tbody>
+                </table>
+        </apex:pageBlock>
+</apex:page>
