@@ -2,7 +2,7 @@ public class ApexAssignment {
 
     //This function will return the list of names of students for a particular class id provided
     public static List<String> getNamesOfStudentsInClass(Id classId){
-    List<String> studentNameList = new List<String>();
+		List<String> studentNameList = new List<String>();
         
         for(Student__c stud : [SELECT Id, Name, Class__c FROM Student__c WHERE Class__c = :classId]){
             studentNameList.add(stud.Name);            
