@@ -1,0 +1,24 @@
+<apex:page standardController="Opportunity" extensions="OpportunityExtController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!saveData}" value="Save"/>
+                <apex:commandButton action="{!clearData}" value="Clear"/>
+                <apex:commandButton action="{!cancelData}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageblockTable value="{!conList}" var="con">
+                <apex:column headervalue="Select">
+                    <input type="radio" name="selectRadio" id="radio">
+                        <apex:actionSupport rerender="Selected_RBS" event="onclick" action="{!getSelected}">
+                            <apex:param name="conId" value="{!con.id}"/>
+                        </apex:actionSupport>
+                    </input>
+                 </apex:column>
+                 <apex:column value="{!con.Name}" />
+                 <apex:column value="{!con.Account.Name}" />
+                 <apex:column value="{!con.Subjects__c}" />
+            </apex:pageblockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
