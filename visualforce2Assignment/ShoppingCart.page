@@ -7,10 +7,15 @@
             </apex:pageBlockSection>
         </apex:pageBlock>
         <apex:pageblock id="poLineSection">
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!saveCart}" id="saveButton" />
+            </apex:pageBlockButtons>
+            <apex:actionStatus id="renderMeAddStatus" startText="Adding Item........"></apex:actionStatus>
+            <apex:actionStatus id="renderMeRemoveStatus" startText="Removing Item........"></apex:actionStatus>
             <apex:pageBlockSection title="Purchase Order Line Items">
                 <apex:dataTable value="{!POLineItems}" var="poLine" cellpadding="4" border="1">
                     <apex:column headervalue="Remove Items">
-                        <apex:commandLink action="{!deleteLineItem}" reRender="poLineSection" status="renderMeStatus">
+                        <apex:commandLink action="{!deleteLineItem}" reRender="poLineSection" status="renderMeRemoveStatus">
                             <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>                              
                             </button>
@@ -21,7 +26,9 @@
                         <apex:outputField value="{!poLine.Items__r.Item_Name__c}" />
                     </apex:column>
                     <apex:column headerValue="Quantities">
-                        <apex:inputText value="{!poLine.Quantity__c}" />
+                        <apex:outputField value="{!poLine.Quantity__c}">
+                        	<apex:inlineEditSupport showOnEdit="saveButton"/>
+                        </apex:outputField>
                     </apex:column>
                     <apex:column headerValue="Smart Packed?">
                         <apex:inputCheckbox value="{!poLine.Smart_Pack__c}"/>
@@ -39,7 +46,7 @@
             <apex:pageBlockSection title="Items available">
                 <apex:dataTable value="{!Items}" var="item" cellpadding="4" border="1">
                     <apex:column headervalue="Add Items">
-                        <apex:commandLink action="{!addLineItem}" reRender="poLineSection" status="renderMeStatus">
+                        <apex:commandLink action="{!addLineItem}" reRender="poLineSection" status="renderMeAddStatus">
                             <button class="btn btn-large"><i class="fa fa-close"></i></button>
                             <apex:param value="{!item.Id}" name="IdToAdd" assignTo="{!addItemLIneId}"/>
                         </apex:commandLink>
