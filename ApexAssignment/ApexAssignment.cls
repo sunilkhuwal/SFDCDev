@@ -15,10 +15,10 @@ public class ApexAssignment {
         for(Class__c classKey : [SELECT Id, Name, (SELECT Id, Name FROM Students__r) FROM Class__c]){
             Set<Id> studentIdSet = new Set<Id>();
             for(Student__c student : classKey.Students__r){
-              studentIdSet.add(student.Id);    
+				studentIdSet.add(student.Id);    
             }
             if(studentIdSet.size()>0)
-              classMap.put(classKey, studentIdSet);
+				classMap.put(classKey, studentIdSet);
         }
         return classMap;
   }

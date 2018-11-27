@@ -4,8 +4,8 @@ public class ApexAssignmentTest {
     @isTest
     private static void getNamesOfStudentsInClassTest(){
         Contact newTeacher;
-      Class__c newClass;
-      Student__c newStudent;
+		Class__c newClass;
+		Student__c newStudent;
         
         //Creat a teacher record in Contact object
         newTeacher = new Contact();
@@ -53,8 +53,8 @@ public class ApexAssignmentTest {
   @isTest
     private static void getIdsOfStudentsInClass(){
         Contact newTeacher;
-      Class__c newClass;
-      Student__c newStudent;
+		Class__c newClass;
+		Student__c newStudent;
         
         //Creat a teacher record in Contact object
         newTeacher = new Contact();
