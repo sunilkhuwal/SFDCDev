@@ -1,0 +1,3 @@
+<apex:page >
+    <c:SOQLComponent Query="SELECT Id, First_Name__c, LastName__c, DOB__c, Age__c, Sex__c FROM Student__c"/>
+</apex:page>

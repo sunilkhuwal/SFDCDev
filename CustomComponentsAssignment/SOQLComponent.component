@@ -1,0 +1,51 @@
+<apex:component id="SOQLComponent" controller="SOQLComponentController">
+    <apex:attribute name="Query" type="String" description="Query to display results" assignTo="{!stdQuery}"/> 
+    <apex:form >
+        <apex:pageBlock title="Students Detail page" id="stdData">
+            <apex:pageBlockTable id="myTable" value="{!IF(stdLst==NULL, stdLst2, stdLst)}" var="std">
+                <apex:column>
+                    <apex:facet name="header">
+                    	<apex:commandLink value="Action" action="{!sortByID}" reRender="myTable" />	
+                    </apex:facet>
+                    <apex:commandLink value="Quick Go" action="{!gotoStudent}">
+                        <apex:param name="rId" value="{!std.Id}" />
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                    	<apex:commandLink value="Id" action="{!sortByID}" reRender="myTable" />	
+                    </apex:facet>
+                    <apex:outputField value="{!std.Id}"/>
+                </apex:column>
+                <apex:column>
+                    <apex:facet name="header">
+                    	<apex:commandLink value="First Name" action="{!sortByFirstName}" reRender="myTable"/>	
+                    </apex:facet>
+                	<apex:outputField value="{!std.First_Name__c}"/>
+                </apex:column>
+                <apex:column>
+                    <apex:facet name="header">
+                    	<apex:commandLink value="Last Name" action="{!sortByLastName}" reRender="myTable"/>	
+                    </apex:facet>
+                	<apex:outputField value="{!std.LastName__c}"/>
+                </apex:column>
+                <apex:column>
+                    <apex:facet name="header">
+                    	<apex:commandLink value="Age" action="{!sortByAge}" reRender="myTable"/>	
+                    </apex:facet>
+                	<apex:outputField value="{!std.Age__c}"/>
+                </apex:column>
+                <apex:column>
+                    <apex:facet name="header">
+                    	<apex:commandLink value="Sex" action="{!sortBySex}" reRender="myTable"/>	
+                    </apex:facet>
+                	<apex:outputField value="{!std.Sex__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:commandButton value="First" disabled="{!!setCon.hasPrevious}"  action="{!first}" reRender="stdData"/>
+            <apex:commandButton value="Next" disabled="{!!setCon.hasNext}"  action="{!next}" reRender="stdData"/>
+            <apex:commandButton value="Previous" disabled="{!!setCon.hasPrevious}"  action="{!previous}" reRender="stdData"/>
+            <apex:commandButton value="Last" disabled="{!!setCon.hasNext}"  action="{!last}" reRender="stdData"/>
+        </apex:pageBlock>
+    </apex:form>    
+</apex:component>
