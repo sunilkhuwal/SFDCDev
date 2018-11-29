@@ -1,0 +1,17 @@
+<apex:page standardController="Student__c" showHeader="false">
+    <apex:form >
+        <apex:pageBlock title="Student Details">
+            <table border="1">
+                <thead style="font-weight:bold;">
+                    <tr><td>Student Name</td><td>Class</td></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><apex:outputField value="{!Student__c.Name}"/></td>
+                        <td><apex:outputField value="{!Student__c.Class__r.Name__c}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
