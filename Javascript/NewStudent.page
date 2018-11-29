@@ -11,8 +11,6 @@
             std.Class__c=clsId;
             std.LastName__c=studentName;
             var result = sforce.connection.create([std]); 
-            alert(result[0].id);
-            alert(window.parent);
             window.top.close();
             window.opener.location.href = "/"+result[0].id;
         }
