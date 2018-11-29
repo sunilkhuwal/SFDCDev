@@ -1,0 +1,30 @@
+<apex:page id="pg" standardController="Class__c" showHeader="false" docType="html-5.0">
+    <script src="/soap/ajax/35.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/35.0/apex.js" type="text/javascript"></script>
+    <script type="text/javascript">
+       sforce.connection.sessionId = '{!$Api.Session_ID}';
+        function createStudent(){
+            var std = new sforce.SObject('Student__c'); 
+            var clsId = '{!Class__c.Id}';
+            var studentName = document.getElementById('pg:frm:pb:ps:sName').value;
+            std.Name=studentName;
+            std.Class__c=clsId;
+            std.LastName__c=studentName;
+            var result = sforce.connection.create([std]); 
+            alert(result[0].id);
+            alert(window.parent);
+            window.top.close();
+            window.opener.location.href = "/"+result[0].id;
+        }
+    </script>
+    
+    <apex:form id="frm">
+        <apex:pageblock id="pb" title="Want to create student for the class?">
+            <apex:messages />
+            <apex:pageBlockSection id="ps">
+                Student Name :- <apex:input type="text" id="sName"/>
+                <apex:commandButton value="Save New Student Record" onclick="createStudent();" />
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>
