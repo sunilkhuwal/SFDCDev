@@ -1,0 +1,28 @@
+<apex:page id="pg" standardController="Student__c" showHeader="false" docType="html-5.0">
+    <script src="/soap/ajax/35.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/35.0/apex.js" type="text/javascript"></script>
+    <script type="text/javascript">
+       sforce.connection.sessionId = '{!$Api.Session_ID}';
+        function updateStudent(){
+            var std = new sforce.SObject('Student__c'); 
+            var studentName = document.getElementById('pg:frm:pb:ps:sName').value;
+            std.Name=studentName;
+            std.Id='{!Student__c.Id}';
+            
+            var result = sforce.connection.update([std]);
+            window.top.close();
+            window.opener.location.href = "/"+result[0].id;
+        }
+    </script>
+    
+    <apex:form id="frm">
+        <apex:pageblock id="pb" title="Want to create student for the class?">
+            <apex:messages />
+            <apex:pageBlockSection id="ps">
+                Student Name :- <apex:input type="text" id="sName"/>
+                <apex:commandButton value="Save" onclick="updateStudent();" />
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>
