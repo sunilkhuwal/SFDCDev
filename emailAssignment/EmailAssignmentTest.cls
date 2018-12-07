@@ -30,4 +30,19 @@ public class EmailAssignmentTest {
         //Then
         System.assertEquals(2, invocations, 'An email has not been sent');
     }
+    
+    @isTest static void testTrigger_SendEmailOnOpportunityUpdate(){
+        //Given
+        Opportunity oppr = new Opportunity(Name='op1', StageName='New', CloseDate=System.today()+10); insert oppr;
+
+        //When
+        Test.StartTest();
+        oppr.Custom_Status__c='Open';
+        update oppr;
+        Integer invocations = Limits.getEmailInvocations();
+        Test.stopTest();
+        
+        //Then
+        System.assertEquals(1, invocations, 'An email has not been sent');
+    }
 }
