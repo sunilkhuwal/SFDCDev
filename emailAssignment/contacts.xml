@@ -1,0 +1,23 @@
+<contacts>
+	<contact>
+		<fname>Khoya</fname>
+		<lname>Paya</lname>
+		<email>abc@xyzc.com</email>
+		<phonenumber>8989898980</phonenumber>
+		<experience>2.5</experience>
+	</contact>
+	<contact>
+		<fname>Dhunda</fname>
+		<lname>Mila</lname>
+		<email>abc@xyzb.com</email>
+		<phonenumber>8189898980</phonenumber>
+		<experience>10.5</experience>
+	</contact>
+	<contact>
+		<fname>Anaaa</fname>
+		<lname>Jaaaanaa</lname>
+		<email>abc@xyza.com</email>
+		<phonenumber>8989898980</phonenumber>
+		<experience>11.5</experience>
+	</contact>
+</contacts> 
