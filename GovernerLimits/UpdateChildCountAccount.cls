@@ -8,26 +8,17 @@ public class UpdateChildCountAccount {
 		return accIds;  
     }
     
-    public static void updateChildAccountCount(Set<Id> idSets){
-        List<Account> accLst = [SELECT Id, Child_Count__c FROM Account WHERE Id IN :idSets];
-        Map<Id, Account> accMap = new Map<Id, Account>();
-        for(Account a : accLst){
-            accMap.put(a.Id, a);
+    public static void updateChildAccountCount(Set<Id> idSet){
+        List<Account> updateList = new List<Account>();
+        List<Account> accounts = [SELECT Id, Parent_Account__c, Parent_Account__r.Name, Child_Count__c FROM Account WHERE Id IN :idSet];
+        for(Account a : accounts){
+            List<Account> act = [SELECT Id FROM Account WHERE Parent_Account__c = :a.Id];
+            a.Child_Count__c = act.size();            
         }
-
-        List<AggregateResult> aggrgRslt = [SELECT COUNT(Parent_Account__c) childSum, Parent.Id FROM Account WHERE Parent_Account__c IN :idSets GROUP BY Parent.Id];
-        for(AggregateResult result: aggrgRslt){
-            System.debug('Parent Id: ' + result.get('parent.Id'));
-            Integer childSum = (Integer)result.get('childSum');
-            Account tempAcc = accMap.get((Id)result.get('parent.Id'));
-            tempAcc.Child_Count__c = (Integer)result.get('childSum');
-            accMap.put((Id)result.get('parent.Id'), tempAcc);
-        }
-        
         try{
-            update accMap;
+            update accounts;
         }
-        catch(DMLException e){
+        catch (DmlException d){
             System.debug('All Accounts :-'+accounts);
         }
     }
