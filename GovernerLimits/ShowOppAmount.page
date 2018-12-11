@@ -1,0 +1,10 @@
+<apex:page standardController="Account" extensions="OppExtController" recordSetVar="account">
+    <apex:form>
+        <apex:pageBlock title="List of Accounts with Total Amount">
+            <apex:pageBlockTable value="{!oppLst}" var="opp">
+                <apex:column headerValue="Account Name">{!opp['act']}</apex:column>
+                <apex:column headerValue="Opportunity Total">{!opp['amount']}</apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>    
+</apex:page>
