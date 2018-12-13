@@ -1,0 +1,5 @@
+"NAME","ACCOUNTNUMBER","PHONE","NUMBEROFEMPLOYEES","ERROR"
+"Uploader Account1","ABC121212","9494949494","5","Account Number should be Numeric if filled or else leave it blank"
+"Uploader Account2","ABC232323","9494949491","10","Account Number should be Numeric if filled or else leave it blank"
+"Uploader Account3","ABC343434","9494949411","4","Account Number should be Numeric if filled or else leave it blank"
+"Uploader Account4","ABC454545","9494949422","2","Account Number should be Numeric if filled or else leave it blank"
