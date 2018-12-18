@@ -1,0 +1,23 @@
+<apex:page standardcontroller="Student__c" extensions="WebsiteController">
+    <apex:form >
+        <apex:pageBlock title="Student Detail List" id="detail"> 
+            <span>Students List : </span>
+            <apex:selectList size="1" value="{!stdName}">
+                <apex:selectOptions value="{!stdOptions}"/>
+                <apex:actionSupport event="onchange" action="{!fetchData}" rerender="dtl"/>
+            </apex:selectList>
+        </apex:pageBlock>
+        
+        <apex:outputPanel id="dtl">  
+            <apex:pageBlock title="Student Detail" id="ren">
+                <apex:pageBlockSection >
+                    <apex:inputField label="Name" value="{!stdData.Name}"/>
+                    <apex:inputField label="First Name" value="{!stdData.First_Name__c}"/>
+                    <apex:inputField label="Last Name" value="{!stdData.LastName__c}"/>
+                    <apex:inputField label="DOB" value="{!stdData.DOB__c}"/>
+                    <apex:inputField label="Sex" value="{!stdData.Sex__c}"/>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:outputPanel>        
+    </apex:form>
+</apex:page>
