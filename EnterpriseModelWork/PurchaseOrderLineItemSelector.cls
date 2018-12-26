@@ -12,11 +12,21 @@ public class PurchaseOrderLineItemSelector extends fflib_SObjectSelector{
            	PurchaseOrderLineItem__c.Quantity__c,
            	PurchaseOrderLineItem__c.Total_Price__c,
             PurchaseOrderLineItem__c.Unit_Price__c,
-            PurchaseOrderLineItem__c.Items__c.Name
+            PurchaseOrderLineItem__c.Items__c
         };
     }
     
     public List<PurchaseOrderLineItem__c> selectById(Set<Id> idSet){
         return (List<PurchaseOrderLineItem__c>) selectSObjectsById(idSet);
+    }
+    
+    public List<PurchaseOrderLineItem__c> selectByPOId(Set<Id> poIdSet)
+    {
+        fflib_QueryFactory poLineQueryFactory = newQueryFactory();
+        poLineQueryFactory.selectFields(getSObjectFieldList());
+        
+        return (List<PurchaseOrderLineItem__c>) Database.query(
+            poLineQueryFactory.setCondition('PurchaseOrder__c IN :poIdSet')
+            .toSOQL());
     }
 }
