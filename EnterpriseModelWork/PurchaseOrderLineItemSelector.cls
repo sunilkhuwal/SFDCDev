@@ -1,9 +1,15 @@
-public class PurchaseOrderLineItemSelector extends fflib_SObjectSelector{
+public class PurchaseOrderLineItemSelector extends fflib_SObjectSelector implements IPurchaseOrderLineItemSelector
+{
 
     public Schema.SObjectType getSObjectType(){
         return PurchaseOrderLineItem__c.SObjectType;
     }
-    
+
+	public static IPurchaseOrderLineItemSelector newInstance()
+    {
+        return (IPurchaseOrderLineItemSelector) Application.Selector.newInstance(PurchaseOrderLineItem__c.SObjectType);
+    }
+        
     public List<Schema.SObjectField> getSObjectFieldList(){
         return new List<Schema.SObjectField>{
             PurchaseOrderLineItem__c.Id,

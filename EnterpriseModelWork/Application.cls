@@ -25,4 +25,12 @@ public class Application
                PurchaseOrderLineItem__c.SObjectType => PurchaseOrderLineItemSelector.class
                
             });
+    
+    public static final fflib_Application.DomainFactory Domain =
+        new fflib_Application.DomainFactory(
+            Application.Selector, new Map<SObjectType, Type> 
+            {
+                PurchaseOrderLineItem__c.SObjectType => PurchaseOrderLineItems.Constructor.class
+            }
+        );
 }
